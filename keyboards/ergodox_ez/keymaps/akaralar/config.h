@@ -36,3 +36,11 @@
 
 // Turn off Caps Word after 5 seconds.
 #define CAPS_WORD_IDLE_TIMEOUT 5000
+
+// #define ORYX_CONFIGURATOR
+#define USB_SUSPEND_WAKEUP_DELAY 0
+
+#define FIRMWARE_VERSION u8"yBAgx/nwR3b"
+#define RAW_USAGE_PAGE 0xFF60
+#define RAW_USAGE_ID 0x61
+#define LAYER_STATE_16BIT

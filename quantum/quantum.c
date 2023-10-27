@@ -318,6 +318,9 @@ bool process_record_quantum(keyrecord_t *record) {
 #ifdef HAPTIC_ENABLE
             process_haptic(keycode, record) &&
 #endif
+#ifdef ORYX_ENABLE
+            process_record_oryx(keycode, record) &&
+#endif
 #if defined(VIA_ENABLE)
             process_record_via(keycode, record) &&
 #endif

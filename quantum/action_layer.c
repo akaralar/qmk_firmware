@@ -1,5 +1,8 @@
 #include <limits.h>
 #include <stdint.h>
+#ifdef ORYX_ENABLE
+#    include "oryx.h"
+#endif
 
 #include "keyboard.h"
 #include "action.h"
@@ -113,6 +116,9 @@ __attribute__((weak)) layer_state_t layer_state_set_kb(layer_state_t state) {
  */
 void layer_state_set(layer_state_t state) {
     state = layer_state_set_kb(state);
+#    ifdef ORYX_ENABLE
+    layer_state_set_oryx(state);
+#    endif
     ac_dprintf("layer_state: ");
     layer_debug();
     ac_dprintf(" to ");
