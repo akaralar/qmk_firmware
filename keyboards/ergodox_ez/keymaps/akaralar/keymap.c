@@ -834,6 +834,36 @@ bool process_other_keycodes(uint16_t keycode, keyrecord_t *record) {
 };
 
 //------------------------------------------------------------------------------
+// Combos
+//------------------------------------------------------------------------------
+enum combo_events {
+  M_CODE_BLOCK,
+  M_CODE_BLOCK_SWIFT
+};
+
+const uint16_t PROGMEM code_block_combo[] = {KC_RABK, FT_GRV, COMBO_END};
+const uint16_t PROGMEM swift_code_block_combo[] = {KC_RPRN, KC_AMPR, COMBO_END};
+combo_t key_combos[] = {
+  [M_CODE_BLOCK] = COMBO_ACTION(code_block_combo),
+  [M_CODE_BLOCK_SWIFT] = COMBO_ACTION(swift_code_block_combo),
+};
+
+void process_combo_event(uint16_t combo_index, bool pressed) {
+    switch (combo_index) {
+        case M_CODE_BLOCK:
+            if (pressed) {
+                execute_macro_keycode(M_CBLOCK);
+            }
+            break;
+        case M_CODE_BLOCK_SWIFT:
+            if (pressed) {
+                execute_macro_keycode(M_CBLOCK_S);
+            }
+            break;
+    }
+}
+
+//------------------------------------------------------------------------------
 // LED lights
 //------------------------------------------------------------------------------
 void led_state_set(layer_state_t state) {
