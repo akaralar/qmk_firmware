@@ -67,6 +67,10 @@
 #    include "raw_hid.h"
 #endif
 
+#ifdef ORYX_ENABLE
+#    include "oryx.h"
+#endif
+
 uint8_t keyboard_idle = 0;
 /* 0: Boot Protocol, 1: Report Protocol(default) */
 uint8_t        keyboard_protocol  = 1;
