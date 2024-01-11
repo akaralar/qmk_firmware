@@ -38,6 +38,10 @@
 extern keymap_config_t keymap_config;
 #endif
 
+#ifdef ORYX_ENABLE
+#    include "oryx.h"
+#endif
+
 /* ---------------------------------------------------------
  *       Global interface variables and declarations
  * ---------------------------------------------------------
@@ -533,7 +537,13 @@ void raw_hid_send(uint8_t *data, uint8_t length) {
     if (length != RAW_EPSIZE) {
         return;
     }
+#ifdef ORYX_ENABLE
+    if (!send_report_buffered(USB_ENDPOINT_IN_RAW, data, length)) {
+        rawhid_state.paired  = false;
+    }
+#else
     send_report(USB_ENDPOINT_IN_RAW, data, length);
+#endif
 }
 
 __attribute__((weak)) void raw_hid_receive(uint8_t *data, uint8_t length) {
