@@ -337,11 +337,6 @@ void eeconfig_init_kb(void) {  // EEPROM is getting reset!
     eeconfig_init_user();
 }
 
-#ifdef ORYX_ENABLE
-static uint16_t loops = 0;
-static bool is_on = false;
-#endif
-
 #ifdef DYNAMIC_MACRO_ENABLE
 static bool is_dynamic_recording = false;
 static uint16_t dynamic_loop_timer;
